@@ -1,4 +1,4 @@
-# goit-rn-hw-02
+# goit-rn-hw-03
 
 Встановіть глобально expo cli: npm install -g expo-cli
 
