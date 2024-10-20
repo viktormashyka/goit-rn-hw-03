@@ -12,6 +12,7 @@ import {
   TouchableWithoutFeedback,
   Platform,
 } from "react-native";
+import { NavigationProp } from "@react-navigation/native";
 import { colors } from "../styles/global";
 import Button from "../components/Button";
 import Link from "../components/Link";
@@ -23,7 +24,7 @@ const InitialState = {
   password: "",
 };
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const [user, setUser] = useState(InitialState);
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
 
@@ -45,6 +46,11 @@ const LoginScreen = () => {
   const handleSubmit = () => {
     console.log({ user });
     setUser(InitialState);
+    navigation.navigate("Home", { screen: "Posts", params: { user } });
+  };
+
+  const navigateToRegistration = () => {
+    navigation.navigate("Registration");
   };
 
   return (
@@ -82,11 +88,7 @@ const LoginScreen = () => {
                   Увійти
                 </Text>
               </Button>
-              <Link
-                onPress={() => {
-                  console.log("TODO: add functionality for navigation");
-                }}
-              >
+              <Link onPress={navigateToRegistration}>
                 <Text style={[styles.text, { color: colors.navy_blue }]}>
                   Немає акаунту?{" "}
                   <Text style={{ textDecorationLine: "underline" }}>

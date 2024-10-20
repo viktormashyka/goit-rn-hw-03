@@ -14,6 +14,7 @@ import {
   Platform,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { NavigationProp } from "@react-navigation/native";
 import { colors } from "../styles/global";
 import Button from "../components/Button";
 import Link from "../components/Link";
@@ -29,7 +30,11 @@ const InitialState = {
   password: "",
 };
 
-const RegistrationScreen = () => {
+const RegistrationScreen = ({
+  navigation,
+}: {
+  navigation: NavigationProp<any>;
+}) => {
   const [user, setUser] = useState(InitialState);
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
 
@@ -51,6 +56,10 @@ const RegistrationScreen = () => {
   const handleSubmit = () => {
     console.log({ user });
     setUser(InitialState);
+  };
+
+  const navigateToLogin = () => {
+    navigation.navigate("Login");
   };
 
   return (
@@ -140,11 +149,7 @@ const RegistrationScreen = () => {
                   Зареєструватися
                 </Text>
               </Button>
-              <Link
-                onPress={() => {
-                  console.log("TODO: add functionality for navigation");
-                }}
-              >
+              <Link onPress={navigateToLogin}>
                 <Text style={[styles.text, { color: colors.navy_blue }]}>
                   Вже є акаунт? Увійти
                 </Text>
